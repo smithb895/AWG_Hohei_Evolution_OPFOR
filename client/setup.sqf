@@ -21,7 +21,7 @@
 //#define __DEBUG__
 
 //name this version....
-#define __E_VER_NAME__ "Hohei Evolution RED Chernarus"
+#define __E_VER_NAME__ "[AWG] Evolution RED Chernarus"
 
 //respawn delay
 #define __EVO_RESPAWN_DELAY__ 9

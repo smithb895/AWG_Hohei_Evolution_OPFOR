@@ -34,6 +34,10 @@ EVO_vecmarker = {
 	_markerobj;
 };
 
+//create a group of given side
+//parameters:
+//side (string or side logic)
+//example: _grp = [east] call EVO_createGroup;
 EVO_createGroup = {
 	private ["_grp""_side","_side_str"];
 	_side = _this select 0;
@@ -58,6 +62,7 @@ x_getwparray = {
 	_wp_a
 };
 
+// supports also patrols in square areas, including angle
 XMakePatrolWPX = {
 	private ["_grp", "_start_pos", "_wp_array", "_i", "_wp_pos", "_counter", "_wp", "_wppos", "_pos", "_cur_pos","_no_pos_found"];
 	_grp = _this select 0;
@@ -113,6 +118,10 @@ XMakePatrolWPX = {
 	_wp setWaypointCompletionRadius (10 + random 10);
 };
 
+// get a random point inside a circle
+// parameters:
+// center position, radius of the circle
+// example: _random_point = [position trigger1, 200] call XfGetRanPointCircle;
 XfGetRanPointCircle = {
 	private ["_center", "_radius", "_co", "_angle", "_x1", "_y1", "_no", "_valid", "_slope"];
 	_center = _this select 0;_radius = _this select 1;
@@ -138,6 +147,7 @@ XfGetRanPointCircle = {
 	_ret_val
 };
 
+// no slope check, for patrolling
 XfGetRanPointCircleOld = {
 	private ["_center", "_radius", "_center_x", "_center_y", "_ret_val", "_co", "_angle", "_x1", "_y1", "_helper"];
 	_center = _this select 0;_radius = _this select 1;
@@ -153,6 +163,10 @@ XfGetRanPointCircleOld = {
 	_ret_val
 };
 
+// get a random point inside a circle for bigger objects
+// parameters:
+// center position, radius of the circle
+// example: _random_point = [position trigger1, 200] call XfGetRanPointCircleBig;
 XfGetRanPointCircleBig = {
 	private ["_center", "_radius", "_co", "_angle", "_x1", "_y1", "_no", "_valid", "_slope"];
 	_center = _this select 0;_radius = _this select 1;
@@ -178,6 +192,10 @@ XfGetRanPointCircleBig = {
 	_ret_val
 };
 
+// get a random point at the borders of a circle
+// parameters:
+// center position, radius of the circle
+// example: _random_point = [position trigger1, 200] call XfGetRanPointCircleOuter;
 XfGetRanPointCircleOuter = {
 	private ["_center", "_radius", "_co", "_angle", "_x1", "_y1", "_no", "_valid", "_slope"];
 	_center = _this select 0;_radius = _this select 1;
@@ -203,6 +221,10 @@ XfGetRanPointCircleOuter = {
 	_ret_val
 };
 
+// get a random point inside a square
+// parameters:
+// center position, a and b (like in triggers), angle
+// example: _random_point  = [position trigger2, 200, 300, 30] call XfGetRanPointSquare;
 XfGetRanPointSquare = {
 	private ["_pos", "_a", "_b", "_angle", "_centerx", "_centery", "_leftx", "_lefty", "_width", "_height", "_co", "_px1", "_py1", "_radius", "_atan", "_x1", "_y1", "_no", "_valid", "_slope"];
 	_pos = _this select 0;_a = _this select 1;_b = _this select 2;_angle = _this select 3;
@@ -230,6 +252,7 @@ XfGetRanPointSquare = {
 	_ret_val
 };
 
+// no slope check, for patrolling
 XfGetRanPointSquareOld = {
 	private ["_pos", "_a", "_b", "_angle", "_centerx", "_centery", "_leftx", "_lefty", "_width", "_height", "_ret_val", "_co", "_px1", "_py1", "_radius", "_atan", "_x1", "_y1"];
 	_pos = _this select 0;_a = _this select 1;_b = _this select 2;_angle = _this select 3;
@@ -247,6 +270,10 @@ XfGetRanPointSquareOld = {
 	_ret_val
 };
 
+// get a random point at the borders of a square
+// parameters:
+// center position, a and b (like in triggers), angle
+// example: _random_point  = [position trigger2, 200, 300, 30] call XfGetRanPointSquareOuter;
 XfGetRanPointSquareOuter = {
 	private ["_pos", "_a", "_b", "_angle", "_centerx", "_centery", "_leftx", "_lefty", "_width", "_height", "_co", "_rside", "_px1", "_py1", "_radius", "_atan", "_x1", "_y1", "_no", "_valid", "_slope"];
 	_pos = _this select 0;_a = _this select 1;_b = _this select 2;_angle = _this select 3;
@@ -286,6 +313,9 @@ XfGetRanPointSquareOuter = {
 	_ret_val
 };
 
+// get a random point at the borders of the current island for spawning air vehicles (no slope check, no is water check, etc)
+// parameters:
+// center position, left x, left y, width, height, angle (optional)
 XfGetRanPointOuterAir = {
 	private ["_pos", "_centerx", "_centery", "_leftx", "_lefty", "_width", "_height", "_rside", "_px1", "_py1", "_radius", "_atan", "_x1", "_y1"];
 	_pos = EVO_mapcenter;
@@ -335,9 +365,9 @@ PsyfCargoSeats = {
 private "_cargoseats";
 	_cargoseats = getNumber (configFile >> "CfgVehicles" >> _this >> "transportsoldier");
 	switch (_cargoseats) do {
-		case (_cargoseats >= 10) : {_cargoseats = 9};
-		case (_cargoseats <= 3) : {_cargoseats = 4};
-		default {_cargoseats = 6};
+		case (_cargoseats >= 16) : {_cargoseats = 15};
+		case (_cargoseats <= 5) : {_cargoseats = 7};
+		default {_cargoseats = 10};
 	};
 	_cargoseats
 };
@@ -366,6 +396,7 @@ EVO_random_music = {
 EVO_building_protector = {
 	private ["_nBuilding"];
 	_nBuilding = nearestBuilding (_this select 0);
+	//["allow_dam", [_nBuilding, false]] call XNetCallEvent;
 	_nBuilding addEventHandler ["handleDamage", {0}];
 };
 
@@ -380,6 +411,10 @@ XfCheckMTShotHD = {
 	if ((getText(configFile >> "CfgAmmo" >> (_this select 4) >> "simulation") in ["shotPipeBomb", "shotTimeBomb"]) || ((_this select 4) == "ACE_PipebombExplosion")) then {
 		_r = (_this select 2) / _quotient;
 	} else {
+		/*
+		if (getText(configFile >> "CfgAmmo" >> (_this select 4) >> "CraterEffects") == "BombCrater") then {
+			_r = _this select 2;
+		};*/
 	};
 	_val = _tower getVariable "EVO_dam_t";
 	if (isNil "_val") then {_val = 0};
@@ -387,6 +422,38 @@ XfCheckMTShotHD = {
 	_tower setVariable ["EVO_dam_t", _r];
 	_r
 };
+/* old
+XCheckMTHardTarget = {
+	private ["_vehicle", "_trigger", "_trigger2"];
+	_vehicle = _this select 0;
+	_vehicle addEventHandler ["killed", {
+		private ["_killer"];
+		_killer = _this select 1;
+		["mt_radio_down",true] call XNetSetJIP;
+		if (!isNil "_killer") then {
+			["p_add_score",[_killer,EVO_radio_score]] call XNetCallEvent;
+		};
+		_list1 = +(list mt_trigger_radio);
+		{["p_add_score",[_x, EVO_radio_score_near]] call XNetCallEvent} forEach _list1;
+		deleteMarker "mt_radio";
+		deleteVehicle mt_trigger_radio;
+		_head = localize "STR_i_destroyed";
+		_body = localize "STR_i_destbody";
+		["evo_message_global",[EVO_brown,_head,_body,"ok"]] call XNetCallEvent;
+	}];
+	["friendly_was_near",false] call XNetSetJIP;
+	["allow_dam", [_vehicle, false]] call XNetCallEvent;
+	friendly_near_mt_target = false;
+	_trigger = [position _vehicle, [15,15,0,false], [EVO_own_side,"PRESENT",false], ["(getpos (thislist select 0)) select 2 < 15", "friendly_near_mt_target = true", ""]] call XfCreateTrigger;
+	while {!friendly_near_mt_target && alive _vehicle} do {
+		__MPCheck;
+		sleep (1.021 + random 1);
+	};
+	["friendly_was_near",true] call XNetSetJIP;
+	["allow_dam", [_vehicle, true]] call XNetCallEvent;
+	deleteVehicle _trigger;
+};
+*/
 
 XfCheckMTHardTarget = {
 	private ["_vehicle", "_hdeh", "_trigger2"];
@@ -420,7 +487,8 @@ XfTKKickCheck = {
 	if (!isNil "_p") then {
 		_numtk = _p select 2;
 		_st_a = X_JIPH getVariable uid_JIP_store;
-		_isAdmin = _st_a select 0;
+		//_isAdmin = _st_a select 0;
+		_isAdmin = (_uid in Evo_Admins);
 		if (isNil "_isAdmin") then {_isAdmin = false};
 		if (!_isAdmin) then {
 			_numtk = _numtk + 1;
@@ -441,6 +509,20 @@ XfTKKickCheck = {
 		};
 	};
 };
+
+Xf_Hacker_Kick = {
+	private ["_pna", "_p", "_uid", "_player"];
+	_player = _this select 0;
+	_uid = getPlayerUID _player;
+	_p = EVO_client_event_holder getVariable _uid;
+	_pna = _p select 0;
+	serverCommand ("#kick " + _pna);
+			["search_admin", [_pna]] call XNetCallEvent;
+			diag_log format ["Player %1 was kicked automatically because of scripting, ArmA 2 UID: %2", _pna, _uid];
+			_head = localize "STR_i_autokick";
+			_body = format ["Player %1 was automatically kicked for scripting. Please screencap this and contact an admin immeditately. ArmA 2 UID: %2", _pna, _uid];
+			["evo_message_global",[EVO_brown,_head,_body,"info"]] call XNetCallEvent;
+			["end_mission", [_p]] call XNetCallEvent;
 
 XfTK_ambu_KickCheck = {
 	private ["_ambuk", "_p", "_numtk_ambu", "_uid","_isAdmin"];

@@ -1,5 +1,6 @@
 ﻿// by psycho
 // vehicles that spawn after a few minutes in the base
+exit; //Wyatt: Kill this script no matter what. It breaks things at base!
 #include "setup.sqf"
 private ["_unit","_unitname"];
 
@@ -53,7 +54,7 @@ while {true} do {
 			_unit setVehicleAmmo 0;
 			_unit setFuel 0;
 			_truedead = true;
-			sleep (_delay + random 60);
+			sleep (_delay + random 30);
 		} else {
 			_timeout = time + _delay;
 			waitUntil {(_timeout < time) || (!alive _unit) || ({alive _x} count crew _unit > 0)};

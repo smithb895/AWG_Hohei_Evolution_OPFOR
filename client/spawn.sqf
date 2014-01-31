@@ -123,7 +123,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do {
 	_p setSkill EVO_PlayerSkill;
 	setViewDistance EVO_vdist;
 	#ifndef __ACE__
-	if (daytime > 19.75 || daytime < 4.15) then {_p action ["NVGoggles",_p]};
+	//if (daytime > 20.5 || daytime < 20.51) then {_p action ["NVGoggles",_p]};  //Wyatt: For some reason all player have NVGs on spawn, no matter what time.
 	#endif
 	#ifdef __BLUE__
 		if (__kindp "US_Soldier_Medic_EP1" or __kindp "FR_Corpsman" or __kindp "USMC_Soldier_Medic" or __kindp "US_Delta_Force_Medic_EP1" or __kindp "GER_Soldier_Medic_EP1") then {_actionId8 = player addAction [localize "STR_a_medic" call XGreyText, "client\mash.sqf",1,1, false, true,"test2"]};
@@ -137,7 +137,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do {
 	#endif
 	#ifdef __RED__
 		if (__kindp "RU_Soldier_Medic" or __kindp "TK_Soldier_Medic_EP1") then {_actionId8 = player addAction [localize "STR_a_medic" call XGreyText, "client\mash.sqf",0,1, false, true,"test2"]};
-		if (__kindp "RUS_Soldier_Sab" or __kindp "TK_Soldier_Engineer_EP1") then {_actionId8 = player addAction [localize "STR_a_ing" call XGreyText, "client\farp.sqf",0,1, false, true,"test2"]; player call define_ing;};
+		if (__kindp "RUS_Soldier_Sab" or __kindp "TK_Soldier_Engineer_EP1" or __kindp "MVD_Soldier") then {_actionId8 = player addAction [localize "STR_a_ing" call XGreyText, "client\farp.sqf",0,1, false, true,"test2"]; player call define_ing;};
 		if (__kindp "RU_Soldier_GL" or __kindp "TK_Soldier_GL_EP1") then {_actionId8 = player addAction [localize "STR_a_gren" call XGreyText, "client\eierwerfer.sqf",0,1, false, true,"test2"]};
 		if (__kindp "RU_Soldier_AA" or __kindp "TK_Soldier_AA_EP1") then {_actionId8 = player addAction [localize "STR_a_aa" call XGreyText, "client\aatent.sqf",0,1, false, true,"test2"]};
 		if (__kindp "RU_Soldier_HAT" or __kindp "TK_Soldier_HAT_EP1") then {_actionId8 = player addAction [localize "STR_a_tow" call XGreyText, "client\attent.sqf",0,1, false, true,"test2"]};
@@ -146,7 +146,7 @@ for [{_loop=0}, {_loop<1}, {_loop=_loop}] do {
 		if (__kindp "RUS_Soldier1" or __kindp "MVD_Soldier" or __kindp "TK_Special_Forces_EP1") then {_actionId9 = player addAction [localize "STR_a_halo" call XGreyText, "client\parajump.sqf",0,1, false, true,"test2"]};
 	#endif
 	_actionId8 = player addAction [localize "STR_a_trench" call XGreyText, "client\trench.sqf",0,1, false, true,"test2"];
-	{[_x] call EVO_AmmoBox} forEach [ammobox1,ammobox2,ammobox3,ammobox4];
+	{[_x] call EVO_AmmoBox} forEach [ammobox1,ammobox2,ammobox3];
 	#ifdef __ACE__
 	[] call ace_chute;
 	#endif

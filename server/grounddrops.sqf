@@ -57,5 +57,5 @@ waitUntil {((_truck distance _current_target_pos) < (random _current_target_radi
 sleep 5;
 _pos = position _truck;
 [_paras,_pos,[_current_target_pos,_current_target_radius]] call XMakePatrolWPX;
-{_x setBehaviour "AWARE"} forEach (units _paras);
+{_x setBehaviour "COMBAT"} forEach (units _paras);
 _truck call EVO_Lock;

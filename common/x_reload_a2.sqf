@@ -18,8 +18,22 @@ _object setVehicleAmmo 1;
 
 _type_name = [_type,0] call XfGetDisplayName;
 if (!isDedicated) then {[_object,format ["Servicing %1... Please stand by...", _type_name]] call XfVehicleChat};
-
-_magazines = getArray(configFile >> "CfgVehicles" >> _type >> "magazines");
+/*
+if (_object isKindOf "Su25_Ins") then {
+	_magazines = ["180Rnd_30mm_GSh301","80Rnd_S8T","4Rnd_GBU12","2Rnd_R73"];
+} else {
+	_magazines = getArray(configFile >> "CfgVehicles" >> _type >> "magazines");
+};
+*/
+switch (typeof _object) do 
+{ 
+	case "Su25_Ins": {
+		_magazines = ["180Rnd_30mm_GSh301","80Rnd_S8T","4Rnd_GBU12","2Rnd_R73"];
+	}; 
+	default {
+		_magazines = getArray(configFile >> "CfgVehicles" >> _type >> "magazines");
+	}; 
+};
 if (count _magazines > 0) then {
 	_removed = [];
 	{
@@ -29,7 +43,8 @@ if (count _magazines > 0) then {
 		};
 	} forEach _magazines;
 	{
-		if (!isDedicated) then {[_object, format ["Reloading %1", _x]] call XfVehicleChat};
+		_mag_disp_name = [_x,2] call XfGetDisplayName;
+		if (!isDedicated) then {[_object, format ["Reloading %1", _mag_disp_name]] call XfVehicleChat};
 		sleep x_reload_time_factor;
 		if (!alive _object) exitWith {};
 		_object addMagazine _x;

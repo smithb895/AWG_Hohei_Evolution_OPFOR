@@ -96,6 +96,19 @@ EVO_Eject = {
 	disableUserInput false;
 };
 
+BIS_EVO_Eject = 
+	{
+		_unit = _this select 0;
+		_unit action ["ENGINEOFF", _vec];
+		_unit action ["Eject",_vec];
+		_vec setVelocity [0, 0, 0];
+		sleep 1.0;
+		_unit action ["ENGINEOFF", _vec];
+		_unit action ["Eject",_vec];
+		_vec setVelocity [0, 0, 0];		
+		if(_unit == player) then {disableUserInput false};
+	};
+
 EVO_GetGuns = {
 	private ["_primtxt","_primpic","_sectxt","_secpic","_name","_i","_type","_array","_count","_portrait","_uname"];
 	_type = _this select 0;
@@ -416,7 +429,7 @@ EVO_deboarding = {
 	_passenger = _this select 2;
 	
 	_dist = [Evo_Baseflag_MHQ, _vec] call BIS_fnc_distance2D;
-	if (_dist <= 1000) exitWith {hint "distanz fehler"};
+	//if (_dist <= 1000) exitWith {hint "distanz fehler"};  //Wyatt: does nothing but annoy me.
 	_real = _passenger getVariable "EVO_passenger";
 	if (isNil "_real") exitWith {hint "getvar found nothing"};
 	if ((_cargo_pos != "driver") && isPlayer _passenger && canMove _vec) then {

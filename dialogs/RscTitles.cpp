@@ -50,6 +50,7 @@ class Border3 {
 
 
 class RscTitles {
+	#include "PG_rsctitles.hpp"
 	titles[] ={"Evo_color_blue_1","Evo_color_blue_2","Evo_color_red_1","Evo_color_red_2","screen","DOM_RscNothing","chopper_lift_hud2","chopper_lift_hud","chopper_hud"};
 	class Evo_color_blue_1 {
 		idd=-1;
@@ -453,34 +454,6 @@ class RscTitles {
 		class controls {};
 	};
 
-
-
-	class topic_dyk_laser {
-	  	idd=-1;
-	  	movingEnable=0;
-	  	duration=12;  
-	  	fadein=2;     
-	  	name="topic_dyk_laser";
-	  	controls[] = {Titel,lasertarget};
-		class Titel : RscStdText {
-			text = "Topic: Did you know...";
-			colorText[] = Color_Blue;       
-			sizeEx = TextSize_large;	  	  	
-			x = -0.8;
-			y = -0.75;
-			w = 1;
-			h = 1;	  
-		};
-		class body : RscStdText {
-			text = "...you can earn points if you give a pilot with guided bombs a target per laser designator.";
-			colorText[] = Color_White;       
-			sizeEx = TextSize_medium;	  	  	
-			x = -0.6;
-			y = -0.65;
-			w = 2;
-			h = 1;
-		};
-	};
 	class topic_dyk_shipping {
 	  	idd=-1;
 	  	movingEnable=0;

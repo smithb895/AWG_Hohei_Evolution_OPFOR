@@ -1,4 +1,5 @@
 ﻿//by psycho
+/*
 #include "setup.sqf"
 if (!isServer) exitWith {};
 sleep 5;
@@ -13,7 +14,7 @@ sleep 5;
 				if (_typex in EVO_f_jets) then {[_x, EVO_jetspawn_delay] execVM "server\vr_base.sqf"};
 				if (_typex in EVO_f_attackhelis) then {[_x, EVO_attackhspawn_delay] execVM "server\vr_base.sqf"};
 			} else {
-				//[_x, 300] execVM "server\vr_base.sqf";
+				//[_x, 60] execVM "server\vr_base.sqf";
 			};
 		} else {
 			if ((_typex in EVO_own_spawn_system_vecs) || isPlayer _x) exitWith {};
@@ -22,3 +23,4 @@ sleep 5;
 		sleep 0.1;
 	} forEach list _x;
 } forEach [AirportIn, farp1, farp2, farp3];
+*/

@@ -3,7 +3,7 @@
 #include "macros.sqf"
 
 //set players side: __BLUE__   ....or....   __RED__
-#define __BLUE__
+#define __RED__
 
 // set version: __OA__ ...or... __A2__ ...or... __CO__
 #define __A2__
@@ -21,7 +21,7 @@
 //#define __DEBUG__
 
 //name this version....
-#define __E_VER_NAME__ "Hohei Evolution BLUE Chernarus"
+#define __E_VER_NAME__ "[AWG] Evolution RED Chernarus"
 
 //respawn delay
 #define __EVO_RESPAWN_DELAY__ 9

@@ -16,7 +16,6 @@ __cppfln(p_c,server\p_connected.sqf);
 __cppfln(p_d,server\p_disconnected.sqf);
 onPlayerConnected {[_name,_uid] call p_c};
 onPlayerDisconnected {[_name,_uid] call p_d};
-
 execVM "server\func\serverfunctions.sqf";
 __cppfln(EVO_spawnCrew,server\func\spawncrew.sqf);
 __cppfln(EVO_spawn_vehicle,server\func\spawnvehicle.sqf);
@@ -35,14 +34,6 @@ d_allunits_add = [];
 execFSM "fsms\GroupClean.fsm";
 execFSM "fsms\NotAliveRemover.fsm";
 
-
-#ifndef __OA__
-if (__isBlue) then {
-	_pos = GetMarkerPos "ah_sw1";
-	_heli = createVehicle ["AH64D_Sidewinders", _pos, [], 0, "NONE"];
-	_heli setDir 134;
-};
-#endif
 
 #ifndef __Takistan__
 EVO_mapcenter = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");

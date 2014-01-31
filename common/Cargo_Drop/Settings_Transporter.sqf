@@ -23,13 +23,12 @@
 //// Small
 if (
 (_Transporter isKindOf "AH6_Base_EP1") ||
-(_Transporter isKindOf "Su34") ||
-(_Transporter isKindOf "Su39") ||
+(_Transporter isKindOf "Su25_base") ||
 (_Transporter isKindOf "F35_base") ||
 (_Transporter isKindOf "AV8B2") ||
 (_Transporter isKindOf "A10") ||
-(_Transporter isKindOf "AH1_Base") ||
-(_Transporter isKindOf "AH64_base_EP1") ||
+(_Transporter isKindOf "AH1Z") ||
+(_Transporter isKindOf "AH64D") ||
 (_Transporter isKindOf "Kamov_Base") ||
 (_Transporter isKindOf "An2_Base_EP1") ||
 (_Transporter isKindOf "L39_base") ||
@@ -42,9 +41,7 @@ if (
 if (
 (_Transporter isKindOf "UH1_Base") ||
 (_Transporter isKindOf "UH60_Base") ||
-(_Transporter isKindOf "UH60M_base_EP1") ||
 (_Transporter isKindOf "MH60s") ||
-(_Transporter isKindOf "BAF_Merlin_HC3_D") ||
 (_Transporter isKindOf "Mi24_Base") ||
 (_Transporter isKindOf "UH1Y") ||
 (_Transporter isKindOf "UH1H_base") // No OR || after the last entry!!
@@ -53,12 +50,11 @@ if (
 //// Large
 if (
 (_Transporter isKindOf "CH47_base_EP1") ||
-(_Transporter isKindOf "Mi17_base") ||
-(_Transporter isKindOf "Mi171Sh_Base_EP1") ||
-(_Transporter isKindOf "MV22") // No OR || after the last entry!!
+(_Transporter isKindOf "Mi17_base")// No OR || after the last entry!!
 ) then { _SelectedTransporterTypeL = true; };
 
 //// XTRA Large
 if (
-(_Transporter isKindOf "C130J") // No OR || after the last entry!!
+(_Transporter isKindOf "C130J")||
+(_Transporter isKindOf "MV22") // No OR || after the last entry!!
 ) then { _SelectedTransporterTypeXL = true; };

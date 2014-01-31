@@ -48,12 +48,13 @@ EVO_Repair = {
 
 EVO_rankUp = {
 	_tscore = score player;
+	_uid = getPlayerUID player;
 	switch (true) do {
 		case (_tscore < EVO_rank1 and rank player != "PRIVATE") : {
 			_rname = format["Pvt.%1",name player];
 			_hint =  format[_rankmes,_rname];
 			["private","PRIVATE",_hint] call _rhint;
-			EVO_PlayerSkill = 0.0;
+			EVO_PlayerSkill = 0.0;	
 			player SetSkill EVO_PlayerSkill;
 			player setUnitRank "PRIVATE";
 		};

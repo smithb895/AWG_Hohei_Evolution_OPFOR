@@ -17,7 +17,7 @@ _eng_reward = {
 			case (_vcl in list reng4) : {reng4 call EVO_Erew};
 			default {};
 		};
-		_rtime = time + 600;
+		_rtime = time + 120;
 	};
 };
 
